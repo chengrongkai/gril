@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springboot?useSSL=false&characterEncoding=utf-8
+    username: root
+    password: 941021
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    hibernate:
+     ddl-auto:  update
+    show-sql: true
+mybatis:
+  typeAliasesPackage: com.crk.gril.domain
+  mapperLocations: classpath:mapper/*.xml
+

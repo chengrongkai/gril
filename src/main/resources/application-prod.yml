@@ -1,0 +1,6 @@
+server:
+  port: 8081
+gril:
+  CupSize: F
+  Age: 18
+Content: "CupSize:${gril.CupSize},Age:${gril.Age}"

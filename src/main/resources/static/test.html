@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/echarts.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="js/layui-v2.3.0/layui/css/layui.css" media="all">
+<body>
+    <div id="main" style="width: 600px;height: 600px"></div>
+    <p id="test">test</p>
+    <p id="test1">tes11111111t</p>
+    <script src="js/layui-v2.3.0/layui/layui.js"></script>
+    <script>
+        layui.use('layer', function() { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+            var mychart = echarts.init(document.getElementById("main"))
+            var option = {
+                title: {
+                    text: 'ECharts 入门示例'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['销量']
+                },
+                xAxis: {
+                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                },
+                yAxis: {},
+                series: [{
+                    name: '销量',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20]
+                }]
+            };
+            mychart.setOption(option);
+
+            $("#test").click(function () {
+                var list = [{"id": 1, "age": 2}, {"id": 1, "age": 2}];
+                var json = JSON.stringify(list);
+                var data = {"id": 1, "age": 2};
+                //json = JSON.stringify(data) ;
+                $.ajax({
+                    url: "../test",
+                    type: 'POST',
+                    data: '{"id":1,"age":2,"list":list}',
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        // debugger;
+                        // alert("success");
+                    }
+                });
+            })
+            $("#test1").click(function () {
+                layer.open({
+                    type: 2
+                    ,id: 'layerDemo' //防止重复弹出
+                    ,content: ['test1.html','yes']
+                    ,area: ['1000px', '600px']
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                    ,success: function(layero, index){
+                        console.log(layero, index);
+                    }
+                });
+
+            })
+        });
+    </script>
+</body>
+</html>
